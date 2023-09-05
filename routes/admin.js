@@ -10,7 +10,8 @@ const products = [];
 router.get('/add-product',(req, res, next)=> { //path will be specified at first
     console.log("Add product!");
     // res.send("<form action='/admin/add-product' method='POST'><input type='text' placeholder='Enter Product Title' name='title'><button type='submit'>Submit</button></form>") //here the header will set automatically to text/html or we can overwrite by res.setHeader('Content-Type', 'text/html)
-    res.sendFile(path.join(rootDir, 'views', 'add-product.html')); //need to use path for html page ../ for moving out from riutes folder
+    // res.sendFile(path.join(rootDir, 'views', 'add-product.html')); //need to use path for html page ../ for moving out from riutes folder
+    res.render('add-product', {pageTitle : 'Add Product', path : '/admin/add-product'});
 });
 
 //add-product with =>POST

@@ -14,11 +14,15 @@ app.use(bodyParser.urlencoded({extended: false})); //to parse the body passing j
 app.use(shopRoutes);
 app.use('/admin',adminRoutes); //filtering that the routes with /admin can entertain
 
+app.set('view engine', 'pug'); //set is the functionality available in express to set any values globally.
+app.set('views', 'views'); 
+
 app.use(express.static(path.join(__dirname,'/public'))); //to define the public folder as static and readable
 
 app.use((req, res, next) => { //if path not found then need to through page not found 404 error
     // res.status(404).send('<h1>404 Not Found</h1>');
-    res.status(404).sendFile(path.join(rootDir,'views', '404.html'));
+    // res.status(404).sendFile(path.join(rootDir,'views', '404.html'));
+    res.status(404).render('404', {pageTitle: 'Page not found!'});
 })
 
 
