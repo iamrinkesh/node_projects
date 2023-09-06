@@ -9,7 +9,7 @@ router.get('/',(req, res, next)=> {
     // console.log('shop products',products);
     // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
     const productsData = products;
-    res.render('shop', {prods : productsData, pageTitle: 'My Shop', path : '/'}); //it will take the pug file as we have defined in app.js with view engine
+    res.render('shop', {prods : productsData, pageTitle: 'My Shop', path : '/', hasProducts : productsData.length > 0}); //it will take the pug file as we have defined in app.js with view engine
 });
 
 module.exports = router;
