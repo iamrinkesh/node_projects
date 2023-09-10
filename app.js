@@ -4,7 +4,7 @@ const path = require('path');
 const app = express(); //is the function from express dependencies
 //app contains many useful functions
 const bodyParser = require('body-parser');
-const expressHbs = require('express-handlebars');
+// const expressHbs = require('express-handlebars'); 
 
 const {adminRoutes, products} = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -16,11 +16,11 @@ app.use(shopRoutes);
 app.use('/admin',adminRoutes); //filtering that the routes with /admin can entertain
 
 //using express handlebars 
-app.engine('hbs', expressHbs());
+// app.engine('hbs', expressHbs());
 
 //using pug template
 // app.set('view engine', 'pug'); //set is the functionality available in express to set any values globally.
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs'); //For ejs we can directly define in the view engine
 app.set('views', 'views'); 
 
 app.use(express.static(path.join(__dirname,'/public'))); //to define the public folder as static and readable
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname,'/public'))); //to define the public 
 app.use((req, res, next) => { //if path not found then need to through page not found 404 error
     // res.status(404).send('<h1>404 Not Found</h1>');
     // res.status(404).sendFile(path.join(rootDir,'views', '404.html'));
-    res.status(404).render('404', {pageTitle: 'Page not found!'});
+    res.status(404).render('404', {pageTitle: 'Page not found!', path: ''});
 })
 
 
