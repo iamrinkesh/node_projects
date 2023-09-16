@@ -5,10 +5,11 @@ const app = express(); //is the function from express dependencies
 //app contains many useful functions
 const bodyParser = require('body-parser');
 // const expressHbs = require('express-handlebars'); 
+const errorController = require('./controllers/error');
 
-const {adminRoutes, products} = require('./routes/admin');
+const {adminRoutes} = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-const rootDir = require('./helper/path');
+// const rootDir = require('./helper/path');
 
 app.use(bodyParser.urlencoded({extended: false})); //to parse the body passing json or through form etc.
 
@@ -25,11 +26,7 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname,'/public'))); //to define the public folder as static and readable
 
-app.use((req, res, next) => { //if path not found then need to through page not found 404 error
-    // res.status(404).send('<h1>404 Not Found</h1>');
-    // res.status(404).sendFile(path.join(rootDir,'views', '404.html'));
-    res.status(404).render('404', {pageTitle: 'Page not found!', path: ''});
-})
+app.use(errorController.get404)
 
 
 // const server = http.createServer(app); 
