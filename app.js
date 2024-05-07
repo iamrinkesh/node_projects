@@ -30,5 +30,6 @@ app.use(errorController.get404)
 
 
 // const server = http.createServer(app); 
+console.log('Server listening to port 3000');
 
 app.listen(3000); //create the server and also listen the port the function in app
