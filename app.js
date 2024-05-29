@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 // const expressHbs = require('express-handlebars'); 
 const errorController = require('./controllers/error');
 const sequelize = require('./helper/database');
+const product = require('./models/product');
 
 const {adminRoutes} = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -33,13 +34,11 @@ app.use(errorController.get404)
 // const server = http.createServer(app); 
 
 sequelize
-    .sync() //syncing to DB and creating the tables
-    .then(result => {
-        console.log(result);
-        app.listen(3000); //create the server and also listen the port the function in app
-        console.log('Server listening to port 3000');
-    })
-    .catch(err => {
-        console.log(err);
-    })
-
+  .sync()
+  .then(result => {
+    // console.log(result);
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });

@@ -12,11 +12,12 @@
 
 
 // sequelize DB
+
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('node_complete', 'root', '', {
-    dialect : 'mysql',
-    host : 'localhost' //default will be localhost only
+  dialect: 'mysql',
+  host: 'localhost'
 });
 
 module.exports = sequelize;
