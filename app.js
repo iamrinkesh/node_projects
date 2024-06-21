@@ -14,6 +14,8 @@ const CartItem = require('./models/cart-item');
 const {adminRoutes} = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const Product = require('./models/product');
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 // const rootDir = require('./helper/path');
 
 app.use(bodyParser.urlencoded({extended: false})); //to parse the body passing json or through form etc.
@@ -49,7 +51,10 @@ User.hasMany(Product);
 User.hasOne(Cart);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product, { through: CartItem });
-Product.belongsToMany(Cart, { through: CartItem })
+Product.belongsToMany(Cart, { through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
 
 // const server = http.createServer(app); 
 
